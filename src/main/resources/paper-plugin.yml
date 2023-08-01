@@ -1,0 +1,12 @@
+name: TSS-SlimeLabs
+version: '${version}'
+main: net.slqmy.tss_slimelabs.SlimeLabsPlugin
+api-version: '1.20'
+prefix: TSS-SlimeLabs
+dependencies:
+  server:
+    TSS-Core:
+      required: true
+
+authors: [slqmy]
+description: An experimental plugin designed to explore the mechanics of Minecraft servers, debug and test features.
