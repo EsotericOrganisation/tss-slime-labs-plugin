@@ -6,6 +6,7 @@ prefix: TSS-SlimeLabs
 dependencies:
   server:
     TSS-Core:
+      load: BEFORE
       required: true
 
 author: slqmy
