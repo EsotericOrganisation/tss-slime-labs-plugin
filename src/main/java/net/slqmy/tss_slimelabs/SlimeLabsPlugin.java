@@ -1,16 +1,22 @@
 package net.slqmy.tss_slimelabs;
 
+import net.slqmy.tss_core.TSSCorePlugin;
+import net.slqmy.tss_slimelabs.command.LaunchCommand;
+import net.slqmy.tss_slimelabs.command.StyledTextTestCommand;
+import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public final class SlimeLabsPlugin extends JavaPlugin {
 
-	@Override
-	public void onEnable() {
-		// Plugin startup logic
+	private final TSSCorePlugin corePlugin = (TSSCorePlugin) Bukkit.getPluginManager().getPlugin("TSS-Core");
+
+	public TSSCorePlugin getCore() {
+		return corePlugin;
 	}
 
 	@Override
-	public void onDisable() {
-		// Plugin shutdown logic
+	public void onEnable() {
+		new StyledTextTestCommand(this);
+		new LaunchCommand(this);
 	}
 }
