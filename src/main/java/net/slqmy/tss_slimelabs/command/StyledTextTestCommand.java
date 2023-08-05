@@ -20,7 +20,7 @@ public class StyledTextTestCommand {
 						.executesPlayer((Player player, CommandArguments args) -> {
 							String discordInviteURL = "https://www.discord.gg/" + plugin.getCore().getConfig().getString("discord-server-invite-code");
 
-							TextComponent styledText = Component.text(discordInviteURL, Colour.BLURPLE.asTextColour(), TextDecoration.UNDERLINED);
+							TextComponent styledText = Component.text(discordInviteURL, Colour.BLURPLE, TextDecoration.UNDERLINED);
 
 							styledText = styledText.clickEvent(ClickEvent.clickEvent(ClickEvent.Action.OPEN_URL, discordInviteURL));
 							styledText = styledText.hoverEvent(HoverEvent.hoverEvent(HoverEvent.Action.SHOW_TEXT, styledText));

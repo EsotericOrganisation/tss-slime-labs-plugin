@@ -72,42 +72,23 @@ public class LaunchCommand {
 							time.addEntry(ChatFormatting.YELLOW.toString());
 							time.prefix(Component.text("Time", Colour.LIGHT_GREY.asTextColour()).append(colon));
 
-							Team xxa = board.registerNewTeam("xxa");
-							xxa.addEntry(ChatFormatting.RED.toString());
-							xxa.prefix(pipe.append(Component.text("xxa", Colour.RED.asTextColour())).append(colon));
-							xxa.suffix(Component.text("0", Colour.ORANGE.asTextColour()));
-
-							Team yya = board.registerNewTeam("yya");
-							yya.addEntry(ChatFormatting.GREEN.toString());
-							yya.prefix(pipe.append(Component.text("yya", Colour.SLIME.asTextColour())).append(colon));
-							yya.suffix(Component.text("0", Colour.ORANGE.asTextColour()));
-
-							Team zza = board.registerNewTeam("zza");
-							zza.addEntry(ChatFormatting.AQUA.toString());
-							zza.prefix(pipe.append(Component.text("zza", Colour.SKY_BLUE.asTextColour())).append(colon));
-							zza.suffix(Component.text("0", Colour.ORANGE.asTextColour()));
-
 							Team vx = board.registerNewTeam("vx");
 							vx.addEntry(ChatFormatting.RED.toString() + ChatFormatting.RED);
-							vx.prefix(Component.text("vx", Colour.RED.asTextColour()).append(colon));
+							vx.prefix(pipe.append(Component.text("vx", Colour.RED)).append(colon));
 
 							Team vz = board.registerNewTeam("vz");
 							vz.addEntry(ChatFormatting.AQUA.toString() + ChatFormatting.AQUA);
-							vz.prefix(Component.text("vz", Colour.SKY_BLUE.asTextColour()).append(colon));
+							vz.prefix(pipe.append(Component.text("vz", Colour.SKY_BLUE)).append(colon));
 
 							Team vy = board.registerNewTeam("vy");
 							vy.addEntry(ChatFormatting.GREEN.toString() + ChatFormatting.GREEN);
-							vy.prefix(Component.text("vy", Colour.SLIME.asTextColour()).append(colon));
+							vy.prefix(pipe.append(Component.text("vy", Colour.SLIME)).append(colon));
 
-							objective.getScore(ChatFormatting.YELLOW.toString()).setScore(10);
-							objective.getScore("").setScore(9);
-							objective.getScore(ChatFormatting.RED.toString()).setScore(8);
-							objective.getScore(ChatFormatting.GREEN.toString()).setScore(7);
-							objective.getScore(ChatFormatting.AQUA.toString()).setScore(6);
-							objective.getScore(" ").setScore(5);
+							objective.getScore(ChatFormatting.YELLOW.toString()).setScore(6);
+							objective.getScore("").setScore(5);
 							objective.getScore(ChatFormatting.RED.toString() + ChatFormatting.RED).setScore(4);
 							objective.getScore(ChatFormatting.AQUA.toString() + ChatFormatting.AQUA).setScore(3);
-							objective.getScore("  ").setScore(2);
+							objective.getScore(" ").setScore(2);
 							objective.getScore(ChatFormatting.GREEN.toString() + ChatFormatting.GREEN).setScore(1);
 
 							Entity entity = (Entity) args.get("entity");
@@ -135,20 +116,36 @@ public class LaunchCommand {
 
 							analysisTask = new BukkitRunnable() {
 
+								private Location previousLocation = finalEntity.getLocation();
+
 								@Override
 								public void run() {
 									ticks[0] += 1;
 
-									xxa.suffix(Component.text(MessageUtil.formatNumber(serverPlayer.xxa), Colour.ORANGE.asTextColour()));
-									yya.suffix(Component.text(MessageUtil.formatNumber(serverPlayer.yya), Colour.ORANGE.asTextColour()));
-									zza.suffix(Component.text(MessageUtil.formatNumber(serverPlayer.zza), Colour.ORANGE.asTextColour()));
-
 									Vector velocity = finalEntity.getVelocity();
+									Location currentLocation = finalEntity.getLocation();
 
-									vx.suffix(Component.text(MessageUtil.formatNumber(velocity.getX()), Colour.LIGHT_GREY.asTextColour()));
-									vz.suffix(Component.text(MessageUtil.formatNumber(velocity.getZ()), Colour.LIGHT_GREY.asTextColour()));
+									TextComponent comma = Component.text(", ", Colour.GREY.asTextColour());
 
-									vy.suffix(Component.text(MessageUtil.formatNumber(velocity.getY()), Colour.LIGHT_GREY.asTextColour()));
+									vx.suffix(
+													Component.text(MessageUtil.formatNumber(velocity.getX()), Colour.LIGHT_GREY)
+																	.append(comma)
+																	.append(Component.text(MessageUtil.formatNumber(currentLocation.getX() - previousLocation.getX())))
+									);
+
+									vz.suffix(
+													Component.text(MessageUtil.formatNumber(velocity.getZ()), Colour.LIGHT_GREY)
+																	.append(comma)
+																	.append(Component.text(MessageUtil.formatNumber(currentLocation.getZ() - previousLocation.getZ())))
+									);
+
+									vy.suffix(
+													Component.text(MessageUtil.formatNumber(velocity.getY()), Colour.LIGHT_GREY)
+																	.append(comma)
+																	.append(Component.text(MessageUtil.formatNumber(currentLocation.getY() - previousLocation.getY())))
+									);
+
+									previousLocation = currentLocation;
 
 									time.suffix(
 													Component.text(
@@ -184,7 +181,7 @@ public class LaunchCommand {
 										cancel();
 									}
 								}
-							}.runTaskTimer(plugin, 0, 1);
+							}.runTaskTimer(plugin, 1, 1);
 						})
 						.register();
 
