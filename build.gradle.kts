@@ -61,5 +61,5 @@ tasks {
 }
 
 application {
-    mainClass.set("SlimeLabsPlugin")
+    mainClass.set("TSSSlimeLabsPlugin")
 }
