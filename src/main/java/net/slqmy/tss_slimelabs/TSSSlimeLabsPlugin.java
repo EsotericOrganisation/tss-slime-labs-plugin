@@ -6,7 +6,7 @@ import net.slqmy.tss_slimelabs.command.StyledTextTestCommand;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 
-public final class SlimeLabsPlugin extends JavaPlugin {
+public final class TSSSlimeLabsPlugin extends JavaPlugin {
 
 	private final TSSCorePlugin corePlugin = (TSSCorePlugin) Bukkit.getPluginManager().getPlugin("TSS-Core");
 
