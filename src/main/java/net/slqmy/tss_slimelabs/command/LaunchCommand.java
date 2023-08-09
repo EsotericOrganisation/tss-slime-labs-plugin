@@ -44,18 +44,28 @@ public class LaunchCommand {
 	private final MessageManager messageManager;
 	private final ArrayList<BukkitTask> spawnParticlesTasks = new ArrayList<>();
 	private final AtomicReference<ArrayList<Boolean>> onGroundStats = new AtomicReference<>(new ArrayList<>());
+
 	private final List<VelocityEstimation> yVelocityEstimations = Arrays.asList(
 					(double initialVelocity, double acceleration, double drag, double ticksPassed) -> (initialVelocity - acceleration) * Math.pow(1 - drag, ticksPassed) - acceleration * (1 - Math.pow(1 - drag, ticksPassed)) / drag,
 					(double initialVelocity, double acceleration, double drag, double ticksPassed) -> initialVelocity * Math.pow(1 - drag, ticksPassed) - acceleration * (1 - Math.pow(1 - drag, ticksPassed)) / drag * (1 - drag),
 					(double initialVelocity, double acceleration, double drag, double ticksPassed) -> initialVelocity * Math.pow(1 - drag, ticksPassed + 1) - acceleration * (1 - Math.pow(1 - drag, ticksPassed + 1)) / drag * (1 - drag),
 					(double initialVelocity, double acceleration, double drag, double ticksPassed) -> Math.pow(50D / 49D, 1 - ticksPassed) + 98D / 25D * (Math.pow(49D / 50D, ticksPassed) - 1)
 	);
+
+	private final List<VelocityEstimationBasedOnPreviousVelocity> yVelocityEstimationsBasedOnPreviousVelocities = List.of(
+					(double previousVelocity) -> (previousVelocity - 0.08D) * 0.9800000190734863
+	);
+
 	private final ArrayList<ArrayList<Double>> yVelocityEstimationErrors = new ArrayList<>();
+	private final ArrayList<ArrayList<Double>> yVelocityEstimationsBasedOnPreviousVelocitiesErrors = new ArrayList<>();
+
 	private final List<VelocityEstimation> xzVelocityEstimations = List.of(
 					(double initialVelocity, double acceleration, double drag, double ticksPassed) -> initialVelocity * Math.pow(0.98D, ticksPassed)
 	);
+
 	private final ArrayList<ArrayList<Double>> xVelocityEstimationErrors = new ArrayList<>();
 	private final ArrayList<ArrayList<Double>> zVelocityEstimationErrors = new ArrayList<>();
+
 	private BukkitTask analysisTask;
 
 	public LaunchCommand(@NotNull TSSSlimeLabsPlugin plugin) {
@@ -170,6 +180,11 @@ public class LaunchCommand {
 								yVelocityEstimationErrors.add(new ArrayList<>());
 							}
 
+							for (int i = 0; i < xzVelocityEstimations.size(); i++) {
+								xVelocityEstimationErrors.add(new ArrayList<>());
+								zVelocityEstimationErrors.add(new ArrayList<>());
+							}
+
 							analysisTask = new BukkitRunnable() {
 
 								private Location previousLocation = finalEntity.getLocation();
@@ -209,17 +224,24 @@ public class LaunchCommand {
 										double estimatedVelocity = estimation.estimateVelocity(initialYVelocity, 0.08D, 0.02D, ticks[0]);
 										double error = estimatedVelocity - realYVelocity;
 
+										DebugUtil.log("Y Error: " + error);
+
 										yVelocityEstimationErrors.get(i).add(error);
-
-										DebugUtil.log("Estimated y velocity: " + estimatedVelocity);
 									}
 
-									for (VelocityEstimation estimation : xzVelocityEstimations) {
-										DebugUtil.log("Estimated x velocity: " + estimation.estimateVelocity(initialXVelocity, 0.08D, 0.02D, ticks[0]));
-									}
+									for (int i = 0; i < xzVelocityEstimations.size(); i++) {
+										VelocityEstimation estimation = xzVelocityEstimations.get(i);
+										double estimatedXVelocity = estimation.estimateVelocity(initialXVelocity, 0.08D, 0.02D, ticks[0]);
+										double xVelocityEstimationError = estimatedXVelocity - realXVelocity;
 
-									for (VelocityEstimation estimation : xzVelocityEstimations) {
-										DebugUtil.log("Estimated z velocity: " + estimation.estimateVelocity(initialZVelocity, 0.08D, 0.02D, ticks[0]));
+										double estimatedZVelocity = estimation.estimateVelocity(initialZVelocity, 0.08D, 0.02D, ticks[0]);
+										double zVelocityEstimationError = estimatedZVelocity - realZVelocity;
+
+										DebugUtil.log("X Error: " + xVelocityEstimationError);
+										DebugUtil.log("Z Error: " + zVelocityEstimationError);
+
+										xVelocityEstimationErrors.get(i).add(xVelocityEstimationError);
+										zVelocityEstimationErrors.get(i).add(zVelocityEstimationError);
 									}
 
 									DebugUtil.log("Spigot velocity: " + velocity, "NMS velocity: " + nmsVelocity, "Real velocity: " + realVelocity);
@@ -241,7 +263,6 @@ public class LaunchCommand {
 									);
 
 									onGroundStats.get().add(nmsEntity.onGround);
-
 
 									TextComponent comma = MessageUtil.getComma();
 
@@ -328,5 +349,9 @@ public class LaunchCommand {
 
 	private interface VelocityEstimation {
 		double estimateVelocity(double initialVelocity, double acceleration, double drag, double ticksPassed);
+	}
+
+	private interface VelocityEstimationBasedOnPreviousVelocity {
+		double estimateVelocity(double previousVelocity);
 	}
 }
