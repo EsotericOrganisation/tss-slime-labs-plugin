@@ -5,6 +5,7 @@ import dev.jorel.commandapi.executors.CommandArguments;
 import net.kyori.adventure.text.Component;
 import net.minecraft.server.level.ServerPlayer;
 import net.slqmy.tss_core.type.Colour;
+import net.slqmy.tss_core.util.MessageUtil;
 import net.slqmy.tss_core.util.NMSUtil;
 import org.bukkit.entity.Player;
 
@@ -40,6 +41,9 @@ public class LocaleCommand {
 											.append(
 															Component.text("\nAdventure API Locale: ", Colour.ORANGE)
 																			.append(Component.text(adventureApiLocale.getDisplayName() + " (" + adventureApiLocale.getDisplayScript() + ", " + adventureApiLocale.getDisplayCountry() + ", " + adventureApiLocale.getDisplayLanguage() + ", " + adventureApiLocale.getDisplayVariant() + ", " + adventureApiLocale.toLanguageTag() + ", " + adventureApiLocale + ")", Colour.YELLOW))
+											).append(
+															Component.text("\nLocale equal to English: ", Colour.ORANGE)
+																			.append(MessageUtil.format(Locale.ENGLISH.equals(playerLocale)))
 											)
 							);
 						})
