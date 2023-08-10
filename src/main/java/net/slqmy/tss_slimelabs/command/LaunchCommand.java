@@ -80,7 +80,7 @@ public class LaunchCommand {
 						.withOptionalArguments(new EntitySelectorArgument.OneEntity("entity"), new DoubleArgument("velocity"), new BooleanArgument("finish on landing"))
 						.executesPlayer((Player player, CommandArguments args) -> {
 							if (analysisTask != null) {
-								player.sendMessage(messageManager.getPlayerMessage(Message.ACTIVE_LAUNCH_ANALYSIS_TASK, player));
+								messageManager.sendMessage(player, Message.ACTIVE_LAUNCH_ANALYSIS_TASK);
 								return;
 							}
 
