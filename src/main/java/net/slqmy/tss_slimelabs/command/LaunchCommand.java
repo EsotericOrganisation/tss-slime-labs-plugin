@@ -84,8 +84,7 @@ public class LaunchCommand {
 								return;
 							}
 
-							TextComponent launchInfoTitle = MessageUtil.createHeading(messageManager.getPlayerMessage(Message.LAUNCH, player));
-
+							TextComponent launchInfoTitle = messageManager.getPlayerMessage(Message.LAUNCH, player);
 							player.sendMessage(launchInfoTitle);
 
 							Entity entity = (Entity) args.get("entity");
@@ -94,22 +93,12 @@ public class LaunchCommand {
 							}
 
 							TextComponent colon = MessageUtil.getColon();
-
-							player.sendMessage(messageManager.getPlayerMessage(Message.ENTITY, player)
-											.append(colon)
-											.append(Component.text(entity.getName(), Colour.LIGHT_GREY))
-							);
+							messageManager.sendMessage(player, Message.ENTITY, entity.getName());
 
 							Boolean finishOnLanding = (Boolean) args.get("finish on landing");
 
 							if (finishOnLanding == null || !finishOnLanding) {
-								TextComponent leftBracket = MessageUtil.getLeftSquareBracket();
-								TextComponent rightBracket = MessageUtil.getRightSquareBracket();
-
-								TextComponent finishLaunchAnalysis = leftBracket.append(
-												messageManager.getPlayerMessage(Message.VIEW_LAUNCH_STATISTICS, player)
-																.append(rightBracket)
-								);
+								TextComponent finishLaunchAnalysis = messageManager.getPlayerMessage(Message.VIEW_LAUNCH_STATISTICS, player);
 
 								finishLaunchAnalysis = finishLaunchAnalysis.clickEvent(ClickEvent.clickEvent(ClickEvent.Action.RUN_COMMAND, "/finish-launch"));
 								finishLaunchAnalysis = finishLaunchAnalysis.hoverEvent(HoverEvent.hoverEvent(HoverEvent.Action.SHOW_TEXT, messageManager.getPlayerMessage(Message.STOP_LAUNCH_ANALYSIS, player)));
@@ -125,11 +114,11 @@ public class LaunchCommand {
 
 							Team time = board.registerNewTeam("Time");
 							time.addEntry(ChatFormatting.YELLOW.toString());
-							time.prefix(messageManager.getPlayerMessage(Message.TIME, player).append(colon));
+							time.prefix(messageManager.getPlayerMessage(Message.TIME, player));
 
 							Team isOnGround = board.registerNewTeam("On ground");
 							isOnGround.addEntry(ChatFormatting.GRAY.toString());
-							isOnGround.prefix(messageManager.getPlayerMessage(Message.ON_GROUND, player).append(colon));
+							isOnGround.prefix(messageManager.getPlayerMessage(Message.ON_GROUND, player));
 
 							Team vx = board.registerNewTeam("vx");
 							vx.addEntry(ChatFormatting.RED.toString() + ChatFormatting.RED);
@@ -325,7 +314,7 @@ public class LaunchCommand {
 
 	private void endLaunchAnalysis(Player player) {
 		if (analysisTask == null) {
-			player.sendMessage(messageManager.getPlayerMessage(Message.NO_ANALYSIS_TASK, player));
+			messageManager.sendMessage(player, Message.NO_ANALYSIS_TASK);
 			return;
 		}
 
@@ -341,7 +330,7 @@ public class LaunchCommand {
 
 		ArrayList<Boolean> onGroundStatsList = onGroundStats.get();
 
-		player.sendMessage(MessageUtil.createHeading(messageManager.getPlayerMessage(Message.LAUNCH_STATISTICS, player)));
+		messageManager.sendMessage(player, Message.LAUNCH_STATISTICS);
 		player.sendMessage(MessageUtil.createCompactArray(onGroundStatsList.toArray()));
 
 		DebugUtil.log(yVelocityEstimationErrors);
