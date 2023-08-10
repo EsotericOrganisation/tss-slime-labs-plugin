@@ -4,7 +4,7 @@ import dev.jorel.commandapi.CommandAPICommand;
 import dev.jorel.commandapi.executors.CommandArguments;
 import net.kyori.adventure.text.Component;
 import net.minecraft.server.level.ServerPlayer;
-import net.slqmy.tss_core.type.Colour;
+import net.slqmy.tss_core.datatype.Colour;
 import net.slqmy.tss_core.util.MessageUtil;
 import net.slqmy.tss_core.util.NMSUtil;
 import org.bukkit.entity.Player;
