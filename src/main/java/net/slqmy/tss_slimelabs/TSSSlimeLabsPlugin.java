@@ -9,16 +9,16 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 public final class TSSSlimeLabsPlugin extends JavaPlugin {
 
-	private final TSSCorePlugin corePlugin = (TSSCorePlugin) Bukkit.getPluginManager().getPlugin("TSS-Core");
+  private final TSSCorePlugin corePlugin = (TSSCorePlugin) Bukkit.getPluginManager().getPlugin("TSS-Core");
 
-	public TSSCorePlugin getCore() {
-		return corePlugin;
-	}
+  public TSSCorePlugin getCore() {
+	return corePlugin;
+  }
 
-	@Override
-	public void onEnable() {
-		new StyledTextTestCommand(this);
-		new LaunchCommand(this);
-		new LocaleCommand();
-	}
+  @Override
+  public void onEnable() {
+	new StyledTextTestCommand(this);
+	new LaunchCommand(this);
+	new LocaleCommand();
+  }
 }
