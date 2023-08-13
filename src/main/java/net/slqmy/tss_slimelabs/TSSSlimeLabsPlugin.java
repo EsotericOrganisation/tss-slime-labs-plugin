@@ -1,9 +1,7 @@
 package net.slqmy.tss_slimelabs;
 
 import net.slqmy.tss_core.TSSCorePlugin;
-import net.slqmy.tss_slimelabs.command.LaunchCommand;
-import net.slqmy.tss_slimelabs.command.LocaleCommand;
-import net.slqmy.tss_slimelabs.command.StyledTextTestCommand;
+import net.slqmy.tss_slimelabs.command.*;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -21,5 +19,6 @@ public final class TSSSlimeLabsPlugin extends JavaPlugin {
 	new LaunchCommand(this);
 	new LocaleCommand();
 	new ClearPDCCommand();
+	new GetPDCValuesCommand(this);
   }
 }
