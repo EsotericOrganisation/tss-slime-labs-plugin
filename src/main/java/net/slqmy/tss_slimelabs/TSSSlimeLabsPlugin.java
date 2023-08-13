@@ -20,5 +20,6 @@ public final class TSSSlimeLabsPlugin extends JavaPlugin {
 	new StyledTextTestCommand(this);
 	new LaunchCommand(this);
 	new LocaleCommand();
+	new ClearPDCCommand();
   }
 }
