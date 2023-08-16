@@ -20,5 +20,6 @@ public final class TSSSlimeLabsPlugin extends JavaPlugin {
 	new LocaleCommand();
 	new ClearPDCCommand();
 	new GetPDCValuesCommand(this);
+	new LogContainerContents();
   }
 }
