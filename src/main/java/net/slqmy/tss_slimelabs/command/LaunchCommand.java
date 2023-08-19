@@ -39,7 +39,7 @@ import java.util.concurrent.atomic.AtomicReference;
 
 public class LaunchCommand {
 
-  final int[] ticks = new int[]{0};
+  final int[] ticks = {0};
   private final ScoreboardManager boardManager = Bukkit.getScoreboardManager();
   private final MessageManager messageManager;
   private final ArrayList<BukkitTask> spawnParticlesTasks = new ArrayList<>();
@@ -49,7 +49,7 @@ public class LaunchCommand {
 		  (double initialVelocity, double acceleration, double drag, double ticksPassed) -> (initialVelocity - acceleration) * Math.pow(1 - drag, ticksPassed) - acceleration * (1 - Math.pow(1 - drag, ticksPassed)) / drag,
 		  (double initialVelocity, double acceleration, double drag, double ticksPassed) -> initialVelocity * Math.pow(1 - drag, ticksPassed) - acceleration * (1 - Math.pow(1 - drag, ticksPassed)) / drag * (1 - drag),
 		  (double initialVelocity, double acceleration, double drag, double ticksPassed) -> initialVelocity * Math.pow(1 - drag, ticksPassed + 1) - acceleration * (1 - Math.pow(1 - drag, ticksPassed + 1)) / drag * (1 - drag),
-		  (double initialVelocity, double acceleration, double drag, double ticksPassed) -> Math.pow(50D / 49D, 1 - ticksPassed) + 98D / 25D * (Math.pow(49D / 50D, ticksPassed) - 1)
+		  (double initialVelocity, double acceleration, double drag, double ticksPassed) -> Math.pow(50.0D / 49.0D, 1 - ticksPassed) + 98.0D / 25.0D * (Math.pow(49.0D / 50.0D, ticksPassed) - 1)
   );
 
   private final List<VelocityEstimationBasedOnPreviousVelocity> yVelocityEstimationsBasedOnPreviousVelocities = List.of(
@@ -143,7 +143,7 @@ public class LaunchCommand {
 
 			  Double velocity = (Double) args.get("velocity");
 			  if (velocity == null) {
-				velocity = 1D;
+				velocity = 1.0D;
 			  }
 
 			  Vector initialVelocity = entity.getLocation().getDirection().multiply(velocity);
@@ -238,7 +238,7 @@ public class LaunchCommand {
 
 				  time.suffix(
 						  Component.text(
-										  MessageUtil.formatNumber(ticks[0] / 20D) + "s", Colour.YELLOW
+										  MessageUtil.formatNumber(ticks[0] / 20.0D) + "s", Colour.YELLOW
 								  )
 								  .append(Component.text(" (", Colour.LIGHT_GREY))
 								  .append(Component.text(ticks[0] + "t", Colour.SKY_BLUE))
