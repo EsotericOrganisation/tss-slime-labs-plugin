@@ -11,11 +11,12 @@ public class ClearPDCCommand {
   public ClearPDCCommand() {
 	new CommandAPICommand("clear-persistent-data-container")
 			.executesPlayer((Player player, CommandArguments args) -> {
-			  Chunk playerChunk = player.getChunk();
-			  PersistentDataContainer container = playerChunk.getPersistentDataContainer();
+			  for (Chunk chunk : player.getWorld().getLoadedChunks()) {
+				PersistentDataContainer container = chunk.getPersistentDataContainer();
 
-			  for (NamespacedKey key : container.getKeys()) {
-				container.remove(key);
+				for (NamespacedKey key : container.getKeys()) {
+				  container.remove(key);
+				}
 			  }
 			})
 			.register();
