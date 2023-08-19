@@ -109,6 +109,7 @@ public class LaunchCommand {
 			  Scoreboard board = boardManager.getNewScoreboard();
 			  Objective objective = board.registerNewObjective("launch_info", Criteria.DUMMY, launchInfoTitle);
 			  objective.setDisplaySlot(DisplaySlot.SIDEBAR);
+			  objective.displayName(launchInfoTitle);
 
 			  TextComponent pipe = MessageUtil.getPipe();
 
