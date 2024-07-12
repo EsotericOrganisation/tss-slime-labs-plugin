@@ -1,9 +1,10 @@
-plugins {
-    java
-    application
+import xyz.jpenilla.resourcefactory.bukkit.BukkitPluginYaml
 
-    id("io.papermc.paperweight.userdev") version "1.5.5"
-    id("xyz.jpenilla.run-paper") version "2.1.0"
+plugins {
+  `java-library`
+  id("io.papermc.paperweight.userdev") version "1.7.1"
+  id("xyz.jpenilla.run-paper") version "2.3.0" // Adds runServer and runMojangMappedServer tasks for testing
+  id("xyz.jpenilla.resource-factory-bukkit-convention") version "1.1.1" // Generates plugin.yml based on the Gradle config
 }
 
 group = "net.slqmy"
@@ -11,11 +12,7 @@ version = "0.1"
 description = "An experimental plugin designed to explore the mechanics of Minecraft servers, debug and test features."
 
 java {
-    toolchain.languageVersion.set(JavaLanguageVersion.of(17))
-}
-
-repositories {
-    mavenCentral()
+    toolchain.languageVersion.set(JavaLanguageVersion.of(21))
 }
 
 dependencies {
@@ -25,41 +22,19 @@ dependencies {
 }
 
 tasks {
-    assemble {
-        dependsOn(reobfJar)
-    }
-
     compileJava {
         options.encoding = Charsets.UTF_8.name()
-        options.release.set(17)
+        options.release.set(21)
     }
 
     javadoc {
         options.encoding = Charsets.UTF_8.name()
     }
-
-    processResources {
-        filteringCharset = Charsets.UTF_8.name()
-
-        val props = mapOf(
-                "name" to project.name,
-                "version" to project.version,
-                "description" to project.description,
-                "apiVersion" to "1.20"
-        )
-
-        inputs.properties(props)
-
-        filesMatching("plugin.yml") {
-            expand(props)
-        }
-    }
-
-    runServer {
-        minecraftVersion("1.20.1")
-    }
 }
 
-application {
-    mainClass.set("TSSSlimeLabsPlugin")
+bukkitPluginYaml {
+  main = "net.slqmy.tss_slimelabs.TSSSlimeLabsPlugin"
+  load = BukkitPluginYaml.PluginLoadOrder.STARTUP
+  authors.add("Slqmy")
+  apiVersion = "1.21"
 }
