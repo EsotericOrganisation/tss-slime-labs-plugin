@@ -7,7 +7,7 @@ plugins {
   id("xyz.jpenilla.resource-factory-bukkit-convention") version "1.1.1" // Generates plugin.yml based on the Gradle config
 }
 
-group = "net.slqmy"
+group = "org.esoteric_organisation"
 version = "0.1"
 description = "An experimental plugin designed to explore the mechanics of Minecraft servers, debug and test features."
 
@@ -15,8 +15,13 @@ java {
     toolchain.languageVersion.set(JavaLanguageVersion.of(21))
 }
 
+repositories {
+    mavenCentral()
+    maven("https://jitpack.io")
+}
+
 dependencies {
-    compileOnly(files("../TSS-Core/build/libs/tss_core-0.1-dev-all.jar"))
+    compileOnly("com.github.EsotericOrganisation:tss-core-plugin:0.1.6:dev-all")
 
     paperweight.paperDevBundle("1.20.1-R0.1-SNAPSHOT")
 }
@@ -33,8 +38,10 @@ tasks {
 }
 
 bukkitPluginYaml {
-  main = "net.slqmy.tss_slimelabs.TSSSlimeLabsPlugin"
+  main = "dev.esoteric_organisation.tss_slime_labs_plugin.TSSSlimeLabsPlugin"
   load = BukkitPluginYaml.PluginLoadOrder.STARTUP
-  authors.add("Slqmy")
+  authors.addAll("Esoteric Organisation", "Esoteric Enderman")
   apiVersion = "1.21"
+
+  depend.addAll("tss-core-plugin")
 }

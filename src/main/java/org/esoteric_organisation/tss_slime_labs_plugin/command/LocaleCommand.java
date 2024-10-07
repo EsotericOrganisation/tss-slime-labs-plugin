@@ -1,12 +1,12 @@
-package net.slqmy.tss_slimelabs.command;
+package org.esoteric_organisation.tss_slime_labs_plugin.command;
 
 import dev.jorel.commandapi.CommandAPICommand;
 import dev.jorel.commandapi.executors.CommandArguments;
 import net.kyori.adventure.text.Component;
 import net.minecraft.server.level.ServerPlayer;
-import net.slqmy.tss_core.datatype.Colour;
-import net.slqmy.tss_core.util.MessageUtil;
-import net.slqmy.tss_core.util.NMSUtil;
+import org.esoteric_organisation.tss_core_plugin.datatype.Colour;
+import org.esoteric_organisation.tss_core_plugin.util.MessageUtil;
+import org.esoteric_organisation.tss_core_plugin.util.NMSUtil;
 import org.bukkit.entity.Player;
 
 import java.util.Locale;

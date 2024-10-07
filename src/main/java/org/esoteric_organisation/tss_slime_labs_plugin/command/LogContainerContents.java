@@ -1,8 +1,8 @@
-package net.slqmy.tss_slimelabs.command;
+package org.esoteric_organisation.tss_slime_labs_plugin.command;
 
 import dev.jorel.commandapi.CommandAPICommand;
 import dev.jorel.commandapi.executors.CommandArguments;
-import net.slqmy.tss_core.util.LogUtil;
+import org.esoteric_organisation.tss_core_plugin.util.LogUtil;
 import org.bukkit.Material;
 import org.bukkit.block.Barrel;
 import org.bukkit.block.Chest;

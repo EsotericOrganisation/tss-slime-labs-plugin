@@ -1,12 +1,12 @@
-package net.slqmy.tss_slimelabs.command;
+package org.esoteric_organisation.tss_slime_labs_plugin.command;
 
 import dev.jorel.commandapi.CommandAPICommand;
 import dev.jorel.commandapi.executors.CommandArguments;
 import net.kyori.adventure.text.Component;
-import net.slqmy.tss_core.datatype.Colour;
-import net.slqmy.tss_core.datatype.player.Message;
-import net.slqmy.tss_core.util.MessageUtil;
-import net.slqmy.tss_slimelabs.TSSSlimeLabsPlugin;
+import org.esoteric_organisation.tss_core_plugin.datatype.Colour;
+import org.esoteric_organisation.tss_core_plugin.datatype.player.Message;
+import org.esoteric_organisation.tss_core_plugin.util.MessageUtil;
+import org.esoteric_organisation.tss_slime_labs_plugin.TSSSlimeLabsPlugin;
 import org.bukkit.Chunk;
 import org.bukkit.NamespacedKey;
 import org.bukkit.entity.Player;

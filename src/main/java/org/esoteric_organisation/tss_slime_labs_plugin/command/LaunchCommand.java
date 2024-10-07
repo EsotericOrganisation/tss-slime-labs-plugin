@@ -1,4 +1,4 @@
-package net.slqmy.tss_slimelabs.command;
+package org.esoteric_organisation.tss_slime_labs_plugin.command;
 
 import dev.jorel.commandapi.CommandAPICommand;
 import dev.jorel.commandapi.CommandPermission;
@@ -13,13 +13,13 @@ import net.kyori.adventure.text.event.HoverEvent;
 import net.minecraft.ChatFormatting;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.phys.Vec3;
-import net.slqmy.tss_core.datatype.Colour;
-import net.slqmy.tss_core.datatype.player.Message;
-import net.slqmy.tss_core.manager.MessageManager;
-import net.slqmy.tss_core.util.DebugUtil;
-import net.slqmy.tss_core.util.MessageUtil;
-import net.slqmy.tss_core.util.NMSUtil;
-import net.slqmy.tss_slimelabs.TSSSlimeLabsPlugin;
+import org.esoteric_organisation.tss_core_plugin.datatype.Colour;
+import org.esoteric_organisation.tss_core_plugin.datatype.player.Message;
+import org.esoteric_organisation.tss_core_plugin.manager.MessageManager;
+import org.esoteric_organisation.tss_core_plugin.util.DebugUtil;
+import org.esoteric_organisation.tss_core_plugin.util.MessageUtil;
+import org.esoteric_organisation.tss_core_plugin.util.NMSUtil;
+import org.esoteric_organisation.tss_slime_labs_plugin.TSSSlimeLabsPlugin;
 import org.bukkit.Bukkit;
 import org.bukkit.Color;
 import org.bukkit.Location;

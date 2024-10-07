@@ -1,4 +1,4 @@
-package net.slqmy.tss_slimelabs.command;
+package org.esoteric_organisation.tss_slime_labs_plugin.command;
 
 import dev.jorel.commandapi.CommandAPICommand;
 import dev.jorel.commandapi.executors.CommandArguments;
