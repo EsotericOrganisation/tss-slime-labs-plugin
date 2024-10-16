@@ -10,9 +10,9 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.BlockStateMeta;
 import org.esoteric.tss.minecraft.plugins.core.util.LogUtil;
 
-public class LogContainerContents {
+public class LogContainerContentsCommand {
 
-  public LogContainerContents() {
+  public LogContainerContentsCommand() {
 	new CommandAPICommand("log-container-contents")
 			.executesPlayer((Player player, CommandArguments args) -> {
 			  ItemStack container = player.getInventory().getItemInMainHand();
