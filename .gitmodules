@@ -1,0 +1,3 @@
+[submodule "test-world"]
+	path = test-world
+	url = git@github.com:EsotericOrganisation/tss-slime-labs-test-world.git
