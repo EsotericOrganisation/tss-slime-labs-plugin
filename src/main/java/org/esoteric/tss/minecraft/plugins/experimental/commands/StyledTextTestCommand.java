@@ -1,4 +1,4 @@
-package org.esoteric_organisation.tss_slime_labs_plugin.command;
+package org.esoteric.tss.minecraft.plugins.experimental.commands;
 
 import dev.jorel.commandapi.CommandAPICommand;
 import dev.jorel.commandapi.CommandPermission;
@@ -8,8 +8,8 @@ import net.kyori.adventure.text.TextComponent;
 import net.kyori.adventure.text.event.ClickEvent;
 import net.kyori.adventure.text.event.HoverEvent;
 import net.kyori.adventure.text.format.TextDecoration;
-import org.esoteric_organisation.tss_core_plugin.datatype.Colour;
-import org.esoteric_organisation.tss_slime_labs_plugin.TSSSlimeLabsPlugin;
+import org.esoteric.tss.minecraft.plugins.core.data.Colour;
+import org.esoteric.tss.minecraft.plugins.experimental.TSSSlimeLabsPlugin;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 

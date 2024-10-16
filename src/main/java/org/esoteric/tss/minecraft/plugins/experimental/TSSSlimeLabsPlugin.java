@@ -1,13 +1,13 @@
-package org.esoteric_organisation.tss_slime_labs_plugin;
+package org.esoteric.tss.minecraft.plugins.experimental;
 
-import org.esoteric_organisation.tss_core_plugin.TSSCorePlugin;
+import org.esoteric.tss.minecraft.plugins.core.TSSCorePlugin;
+import org.esoteric.tss.minecraft.plugins.experimental.commands.*;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
-import org.esoteric_organisation.tss_slime_labs_plugin.command.*;
 
 public final class TSSSlimeLabsPlugin extends JavaPlugin {
 
-  private final TSSCorePlugin corePlugin = (TSSCorePlugin) Bukkit.getPluginManager().getPlugin("tss-core-plugin");
+  private final TSSCorePlugin corePlugin = (TSSCorePlugin) Bukkit.getPluginManager().getPlugin("TSSCore");
 
   public TSSCorePlugin getCore() {
 	return corePlugin;

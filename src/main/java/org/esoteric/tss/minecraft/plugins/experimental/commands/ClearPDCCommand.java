@@ -1,4 +1,4 @@
-package org.esoteric_organisation.tss_slime_labs_plugin.command;
+package org.esoteric.tss.minecraft.plugins.experimental.commands;
 
 import dev.jorel.commandapi.CommandAPICommand;
 import dev.jorel.commandapi.executors.CommandArguments;

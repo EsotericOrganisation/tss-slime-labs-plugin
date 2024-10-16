@@ -1,14 +1,14 @@
-package org.esoteric_organisation.tss_slime_labs_plugin.command;
+package org.esoteric.tss.minecraft.plugins.experimental.commands;
 
 import dev.jorel.commandapi.CommandAPICommand;
 import dev.jorel.commandapi.executors.CommandArguments;
-import org.esoteric_organisation.tss_core_plugin.util.LogUtil;
 import org.bukkit.Material;
 import org.bukkit.block.Barrel;
 import org.bukkit.block.Chest;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.BlockStateMeta;
+import org.esoteric.tss.minecraft.plugins.core.util.LogUtil;
 
 public class LogContainerContents {
 

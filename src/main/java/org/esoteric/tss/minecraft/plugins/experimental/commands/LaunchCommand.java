@@ -1,4 +1,4 @@
-package org.esoteric_organisation.tss_slime_labs_plugin.command;
+package org.esoteric.tss.minecraft.plugins.experimental.commands;
 
 import dev.jorel.commandapi.CommandAPICommand;
 import dev.jorel.commandapi.CommandPermission;
@@ -13,13 +13,13 @@ import net.kyori.adventure.text.event.HoverEvent;
 import net.minecraft.ChatFormatting;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.phys.Vec3;
-import org.esoteric_organisation.tss_core_plugin.datatype.Colour;
-import org.esoteric_organisation.tss_core_plugin.datatype.player.Message;
-import org.esoteric_organisation.tss_core_plugin.manager.MessageManager;
-import org.esoteric_organisation.tss_core_plugin.util.DebugUtil;
-import org.esoteric_organisation.tss_core_plugin.util.MessageUtil;
-import org.esoteric_organisation.tss_core_plugin.util.NMSUtil;
-import org.esoteric_organisation.tss_slime_labs_plugin.TSSSlimeLabsPlugin;
+import org.esoteric.tss.minecraft.plugins.core.data.Colour;
+import org.esoteric.tss.minecraft.plugins.core.data.player.Message;
+import org.esoteric.tss.minecraft.plugins.core.managers.MessageManager;
+import org.esoteric.tss.minecraft.plugins.core.util.DebugUtil;
+import org.esoteric.tss.minecraft.plugins.core.util.MessageUtil;
+import org.esoteric.tss.minecraft.plugins.core.util.NMSUtil;
+import org.esoteric.tss.minecraft.plugins.experimental.TSSSlimeLabsPlugin;
 import org.bukkit.Bukkit;
 import org.bukkit.Color;
 import org.bukkit.Location;

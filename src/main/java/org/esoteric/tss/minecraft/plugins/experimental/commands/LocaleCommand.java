@@ -1,13 +1,13 @@
-package org.esoteric_organisation.tss_slime_labs_plugin.command;
+package org.esoteric.tss.minecraft.plugins.experimental.commands;
 
 import dev.jorel.commandapi.CommandAPICommand;
 import dev.jorel.commandapi.executors.CommandArguments;
 import net.kyori.adventure.text.Component;
 import net.minecraft.server.level.ServerPlayer;
-import org.esoteric_organisation.tss_core_plugin.datatype.Colour;
-import org.esoteric_organisation.tss_core_plugin.util.MessageUtil;
-import org.esoteric_organisation.tss_core_plugin.util.NMSUtil;
 import org.bukkit.entity.Player;
+import org.esoteric.tss.minecraft.plugins.core.data.Colour;
+import org.esoteric.tss.minecraft.plugins.core.util.MessageUtil;
+import org.esoteric.tss.minecraft.plugins.core.util.NMSUtil;
 
 import java.util.Locale;
 
@@ -21,7 +21,7 @@ public class LocaleCommand {
 			  ServerPlayer serverPlayer = NMSUtil.getServerPlayer(player);
 			  assert serverPlayer != null;
 
-			  String nmsLocale = serverPlayer.locale;
+			  String nmsLocale = serverPlayer.adventure$locale.getDisplayLanguage();
 			  Locale adventureApiLocale = serverPlayer.adventure$locale;
 
 			  player.sendMessage(Component.text("Your Current Locale:", Colour.SKY_BLUE)
